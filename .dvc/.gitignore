@@ -1,11 +1,3 @@
-# created by virtualenv automatically
-.idea/
-.vscode/
-__pycache__/
-*.pyc
-models/
-catboost_info/
-data/
-*.pkl
-*.joblib
-*.csv
+/config.local
+/tmp
+/cache
