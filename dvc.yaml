@@ -1,0 +1,41 @@
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+      - data/raw/pp-complete.csv
+      - data/raw/ONSPD_MAY_2025_UK.csv
+      - src/data_ingestion.py
+    outs:
+      - data/processed/bristol_houses_processed.csv
+
+  data_preprocessing:
+    cmd: python src/data_preprocessing.py
+    deps:
+      - data/processed/bristol_houses_processed.csv
+      - src/data_preprocessing.py
+    outs:
+      - data/split/x_train.csv
+      - data/split/x_test.csv
+      - data/split/y_train.csv
+      - data/split/y_test.csv
+
+  model_building:
+    cmd: python src/model_building.py
+    deps:
+      - data/split/x_train.csv
+      - data/split/y_train.csv
+      - src/model_building.py
+    params:
+      - model.catboost
+    outs:
+      - models/catboost_model.pkl
+
+  model_evaluation:
+    cmd: python src/model_evaluation.py
+    deps:
+      - data/split/x_test.csv
+      - data/split/y_test.csv
+      - models/catboost_model.pkl
+      - src/model_evaluation.py
+    metrics:
+      - metrics/evaluation_metrics.json

@@ -1,0 +1,27 @@
+cmd: python src/model_building.py
+deps:
+- path: data/split/x_train.csv
+  hash: md5
+  md5: 3fdf5bee0f109bb136275de99b5ba6b9
+  size: 11423071
+- path: data/split/y_train.csv
+  hash: md5
+  md5: 66fe50150efa392c219ebf9431ca6987
+  size: 2520297
+- path: src/model_building.py
+  hash: md5
+  md5: cc434f0bf33b78b51343238d66f18cc2
+  size: 1940
+params:
+  params.yaml:
+    model.catboost:
+      iterations: 600
+      learning_rate: 0.05
+      depth: 8
+      loss_function: MAE
+      random_state: 18
+outs:
+- path: models/catboost_model.pkl
+  hash: md5
+  md5: 5aadbdac98f354f8ad67d3b365b0e693
+  size: 2527660

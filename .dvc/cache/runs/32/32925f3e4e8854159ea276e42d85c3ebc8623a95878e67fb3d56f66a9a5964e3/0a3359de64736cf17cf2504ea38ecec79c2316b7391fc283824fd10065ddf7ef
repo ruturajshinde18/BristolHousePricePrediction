@@ -1,0 +1,23 @@
+cmd: python src/model_evaluation.py
+deps:
+- path: data/split/x_test.csv
+  hash: md5
+  md5: 7beea0f1b820cf8db97982a193f861ba
+  size: 2855310
+- path: data/split/y_test.csv
+  hash: md5
+  md5: 72618165522e4ea1eb084b6b44a544c0
+  size: 630077
+- path: models/catboost_model.pkl
+  hash: md5
+  md5: 5aadbdac98f354f8ad67d3b365b0e693
+  size: 2527660
+- path: src/model_evaluation.py
+  hash: md5
+  md5: 2a43a89de5be173c5061122a348d4e8e
+  size: 1443
+outs:
+- path: metrics/evaluation_metrics.json
+  hash: md5
+  md5: 18f9dc8ddedee13b59f8ade4b28894d2
+  size: 147

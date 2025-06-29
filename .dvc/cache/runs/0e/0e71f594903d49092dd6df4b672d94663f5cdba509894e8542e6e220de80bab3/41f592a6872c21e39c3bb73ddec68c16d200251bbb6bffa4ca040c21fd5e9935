@@ -1,0 +1,27 @@
+cmd: python src/data_preprocessing.py
+deps:
+- path: data/processed/bristol_houses_processed.csv
+  hash: md5
+  md5: 036e8885b48643275e06d4fe8439e314
+  size: 80626694
+- path: src/data_preprocessing.py
+  hash: md5
+  md5: 2b85c6c71377a92873641cc8583d300a
+  size: 1530
+outs:
+- path: data/split/x_test.csv
+  hash: md5
+  md5: 7beea0f1b820cf8db97982a193f861ba
+  size: 2855310
+- path: data/split/x_train.csv
+  hash: md5
+  md5: 3fdf5bee0f109bb136275de99b5ba6b9
+  size: 11423071
+- path: data/split/y_test.csv
+  hash: md5
+  md5: 72618165522e4ea1eb084b6b44a544c0
+  size: 630077
+- path: data/split/y_train.csv
+  hash: md5
+  md5: 66fe50150efa392c219ebf9431ca6987
+  size: 2520297

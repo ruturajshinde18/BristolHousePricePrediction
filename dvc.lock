@@ -1,0 +1,102 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+    - path: data/raw/ONSPD_MAY_2025_UK.csv
+      hash: md5
+      md5: 40c676b1082182227b54d6503ad905d0
+      size: 1444978430
+    - path: data/raw/pp-complete.csv
+      hash: md5
+      md5: 8c6b3747bd1c49a3ede2aae7e4e40336
+      size: 5295138562
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: 9b58de03c7066397d9de5f5768728a69
+      size: 1503
+    outs:
+    - path: data/processed/bristol_houses_processed.csv
+      hash: md5
+      md5: 036e8885b48643275e06d4fe8439e314
+      size: 80626694
+  data_preprocessing:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - path: data/processed/bristol_houses_processed.csv
+      hash: md5
+      md5: 036e8885b48643275e06d4fe8439e314
+      size: 80626694
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: 2b85c6c71377a92873641cc8583d300a
+      size: 1530
+    outs:
+    - path: data/split/x_test.csv
+      hash: md5
+      md5: 7beea0f1b820cf8db97982a193f861ba
+      size: 2855310
+    - path: data/split/x_train.csv
+      hash: md5
+      md5: 3fdf5bee0f109bb136275de99b5ba6b9
+      size: 11423071
+    - path: data/split/y_test.csv
+      hash: md5
+      md5: 72618165522e4ea1eb084b6b44a544c0
+      size: 630077
+    - path: data/split/y_train.csv
+      hash: md5
+      md5: 66fe50150efa392c219ebf9431ca6987
+      size: 2520297
+  model_building:
+    cmd: python src/model_building.py
+    deps:
+    - path: data/split/x_train.csv
+      hash: md5
+      md5: 3fdf5bee0f109bb136275de99b5ba6b9
+      size: 11423071
+    - path: data/split/y_train.csv
+      hash: md5
+      md5: 66fe50150efa392c219ebf9431ca6987
+      size: 2520297
+    - path: src/model_building.py
+      hash: md5
+      md5: cc434f0bf33b78b51343238d66f18cc2
+      size: 1940
+    params:
+      params.yaml:
+        model.catboost:
+          iterations: 600
+          learning_rate: 0.05
+          depth: 8
+          loss_function: MAE
+          random_state: 18
+    outs:
+    - path: models/catboost_model.pkl
+      hash: md5
+      md5: 5aadbdac98f354f8ad67d3b365b0e693
+      size: 2527660
+  model_evaluation:
+    cmd: python src/model_evaluation.py
+    deps:
+    - path: data/split/x_test.csv
+      hash: md5
+      md5: 7beea0f1b820cf8db97982a193f861ba
+      size: 2855310
+    - path: data/split/y_test.csv
+      hash: md5
+      md5: 72618165522e4ea1eb084b6b44a544c0
+      size: 630077
+    - path: models/catboost_model.pkl
+      hash: md5
+      md5: 5aadbdac98f354f8ad67d3b365b0e693
+      size: 2527660
+    - path: src/model_evaluation.py
+      hash: md5
+      md5: 2a43a89de5be173c5061122a348d4e8e
+      size: 1443
+    outs:
+    - path: metrics/evaluation_metrics.json
+      hash: md5
+      md5: 18f9dc8ddedee13b59f8ade4b28894d2
+      size: 147

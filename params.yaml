@@ -1,0 +1,35 @@
+data:
+  raw_house_data: data/raw/pp-complete.csv
+  raw_postcode_data: data/raw/ONSPD_MAY_2025_UK.csv
+  processed_data: data/processed/bristol_houses_processed.csv
+  target_city: "BRISTOL"
+
+features:
+  selected_features:
+    - property_type
+    - new_build
+    - tenure
+    - Year
+    - lat
+    - long
+  target: price
+  categorical:
+    - property_type
+    - new_build
+    - tenure
+  numerical:
+    - Year
+    - lat
+    - long
+
+split:
+  test_size: 0.20
+  random_state: 18
+
+model:
+  catboost:
+    iterations: 600
+    learning_rate: 0.05
+    depth: 8
+    loss_function: "MAE"
+    random_state: 18

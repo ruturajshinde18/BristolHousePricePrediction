@@ -1,0 +1,19 @@
+cmd: python src/data_ingestion.py
+deps:
+- path: data/raw/ONSPD_MAY_2025_UK.csv
+  hash: md5
+  md5: 40c676b1082182227b54d6503ad905d0
+  size: 1444978430
+- path: data/raw/pp-complete.csv
+  hash: md5
+  md5: 8c6b3747bd1c49a3ede2aae7e4e40336
+  size: 5295138562
+- path: src/data_ingestion.py
+  hash: md5
+  md5: 9b58de03c7066397d9de5f5768728a69
+  size: 1503
+outs:
+- path: data/processed/bristol_houses_processed.csv
+  hash: md5
+  md5: 036e8885b48643275e06d4fe8439e314
+  size: 80626694
