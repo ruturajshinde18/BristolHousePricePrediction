@@ -1,8 +1,9 @@
 dvc
 catboost
-yaml
 streamlit>=1.28.0
+scikit-learn
 streamlit-folium>=0.15.0
+streamlit_folium  # optional: only needed if importing as `streamlit_folium`, but usually just an alias
 folium>=0.14.0
 fastapi>=0.104.0
 uvicorn>=0.24.0
@@ -11,4 +12,4 @@ requests>=2.31.0
 pandas>=2.0.0
 numpy>=1.24.0
 python-multipart>=0.0.6
-awscli
+

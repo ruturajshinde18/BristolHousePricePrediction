@@ -8,7 +8,7 @@ from datetime import datetime
 # Config & constants
 # ----------------------------------------------------------------------------
 
-API_URL = "http://localhost:8000"
+API_URL = "http://localhost:9002"
 
 # Bristol bounding box (approx.)
 BRISTOL_BOUNDS = {
